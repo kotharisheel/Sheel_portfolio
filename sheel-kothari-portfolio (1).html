@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sheel Kothari — Project Manager &amp; Business Analyst</title>
+<meta name="description" content="Sheel Kothari — Project Manager and Business Analyst based in Seattle, WA. SaaS delivery, process design, and analytically grounded program management.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E7EEF0;
+    --paper-panel:#F4F8F9;
+    --ink:#16232B;
+    --ink-soft:#48606B;
+    --line:#B9CDD1;
+    --line-strong:#8FA6AC;
+    --accent:#A9762C;
+    --accent-deep:#7C5320;
+    --max:1180px;
+    --serif: "Source Serif 4", Georgia, serif;
+    --sans: "Space Grotesk", sans-serif;
+    --mono: "IBM Plex Mono", monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--paper), var(--paper)) ,
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(143,166,172,0.25) 39px, rgba(143,166,172,0.25) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(143,166,172,0.16) 39px, rgba(143,166,172,0.16) 40px);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:var(--accent-deep); }
+  a:hover{ color:var(--accent); }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent-deep); outline-offset:3px; }
+
+  h1,h2,h3,h4{ font-family:var(--sans); color:var(--ink); margin:0; letter-spacing:-0.01em; }
+
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 32px; }
+
+  /* ---- top bar ---- */
+  header.top{
+    position:sticky; top:0; z-index:40;
+    background: rgba(231,238,240,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--line-strong);
+  }
+  .topbar{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .mark{ font-family:var(--sans); font-weight:600; font-size:17px; display:flex; align-items:center; gap:10px; }
+  .mark .box{ width:28px;height:28px;border:1.5px solid var(--ink); display:flex; align-items:center; justify-content:center; font-size:12px; font-family:var(--mono); }
+  nav.primary{ display:flex; gap:28px; }
+  nav.primary a{ font-family:var(--sans); font-size:14px; text-decoration:none; color:var(--ink-soft); }
+  nav.primary a:hover{ color:var(--accent-deep); }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--ink); width:38px; height:38px; cursor:pointer; }
+  .nav-toggle span, .nav-toggle::before, .nav-toggle::after{ content:""; display:block; width:16px; height:1.5px; background:var(--ink); margin:4px auto; }
+
+  /* ---- sheet layout: margin column + content column ---- */
+  .sheet{ border-bottom:1px solid var(--line-strong); }
+  .sheet-grid{
+    display:grid;
+    grid-template-columns: 180px 1fr;
+    gap:40px;
+    padding:72px 0;
+  }
+  .margin-col{ border-right:1px solid var(--line); padding-right:24px; }
+  .sheet-no{ font-family:var(--mono); font-size:13px; color:var(--accent-deep); }
+  .sheet-label{ font-family:var(--sans); font-weight:600; font-size:15px; margin-top:6px; }
+  .sheet-meta{ font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-top:18px; line-height:1.8; }
+
+  /* ---- hero ---- */
+  .hero .sheet-grid{ padding-top:56px; }
+  .status{ display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); border:1px solid var(--line-strong); padding:5px 10px; }
+  .status .dot{ width:7px;height:7px;border-radius:50%; background:#4C7A3F; }
+  .kicker{ font-family:var(--sans); font-size:15px; color:var(--accent-deep); margin:22px 0 10px; }
+  h1.name{ font-size:clamp(38px,5.2vw,62px); line-height:1.05; margin-bottom:18px; }
+  .lede{ max-width:62ch; font-size:19px; color:var(--ink-soft); margin-bottom:28px; }
+  .cta-row{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:48px; }
+  .btn{ font-family:var(--sans); font-size:14px; text-decoration:none; padding:11px 20px; border:1px solid var(--ink); color:var(--ink); }
+  .btn.solid{ background:var(--ink); color:var(--paper); }
+  .btn.solid:hover{ background:var(--accent-deep); border-color:var(--accent-deep); color:#fff; }
+  .btn:not(.solid):hover{ border-color:var(--accent-deep); color:var(--accent-deep); }
+
+  .diagram-wrap{ border:1px solid var(--line-strong); background:var(--paper-panel); padding:28px 24px 20px; }
+  .diagram-cap{ font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-top:14px; display:flex; justify-content:space-between; }
+  svg.flow{ width:100%; height:auto; display:block; }
+  .flow text{ font-family:var(--mono); font-size:11.5px; fill:var(--ink); }
+  .flow .stage-label{ font-family:var(--sans); font-size:12.5px; font-weight:600; fill:var(--ink); }
+  .flow-line{ fill:none; stroke:var(--accent-deep); stroke-width:1.6; stroke-dasharray:600; stroke-dashoffset:600; animation: draw 2.2s ease forwards 0.3s; }
+  .flow-node{ fill:var(--paper-panel); stroke:var(--ink); stroke-width:1.2; }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+
+  /* ---- about ---- */
+  h2.title{ font-size:clamp(26px,3vw,34px); max-width:22ch; margin-bottom:22px; }
+  .about-copy{ max-width:64ch; }
+  .about-copy p{ margin:0 0 16px; }
+  blockquote{ font-family:var(--serif); font-style:italic; font-size:20px; color:var(--ink); border-left:2px solid var(--accent-deep); padding-left:18px; margin:0 0 26px; max-width:56ch; }
+  .how-i-work{ margin-top:36px; border-top:1px solid var(--line); padding-top:24px; }
+  .how-i-work-list{ list-style:none; margin:16px 0 0; padding:0; display:grid; gap:14px; }
+  .how-i-work-list li{ display:grid; grid-template-columns:34px 1fr; gap:14px; align-items:baseline; font-size:15.5px; }
+  .how-i-work-list .num{ font-family:var(--mono); color:var(--accent-deep); font-size:13px; }
+
+  /* ---- experience ---- */
+  .role{ border-top:1px solid var(--line); padding:28px 0; }
+  .role:first-child{ border-top:none; padding-top:0; }
+  .role-head{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:8px 24px; margin-bottom:6px; }
+  .role-title{ font-family:var(--sans); font-weight:600; font-size:19px; }
+  .role-org{ color:var(--ink-soft); font-family:var(--sans); font-size:15px; }
+  .role-dates{ font-family:var(--mono); font-size:13px; color:var(--ink-soft); white-space:nowrap; }
+  .role ul{ margin:12px 0 0; padding-left:20px; }
+  .role li{ margin-bottom:8px; font-size:15.5px; }
+
+  /* ---- project ---- */
+  .project-tag{ font-family:var(--mono); font-size:12.5px; color:var(--accent-deep); letter-spacing:0.02em; }
+  .project-title{ font-size:clamp(24px,3vw,30px); margin:8px 0 22px; }
+  .project-grid{ display:grid; grid-template-columns:1fr 1fr; gap:36px; margin-bottom:28px; }
+  .project-grid h4{ font-size:14px; color:var(--ink-soft); font-weight:600; margin-bottom:8px; }
+  .project-grid ul{ margin:0; padding-left:20px; }
+  .project-grid li{ margin-bottom:8px; font-size:15px; }
+  .stat-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line-strong); border:1px solid var(--line-strong); margin:28px 0; }
+  .stat{ background:var(--paper-panel); padding:18px 16px; }
+  .stat .n{ font-family:var(--sans); font-weight:700; font-size:22px; }
+  .stat .l{ font-family:var(--mono); font-size:11.5px; color:var(--ink-soft); margin-top:4px; }
+  .code-block{ background:var(--ink); color:#CFE8D6; font-family:var(--mono); font-size:13px; padding:20px 22px; overflow-x:auto; margin:24px 0; line-height:1.7; }
+  .code-block .muted{ color:#7FA087; }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+  .tag{ font-family:var(--mono); font-size:12px; border:1px solid var(--line-strong); padding:4px 9px; color:var(--ink-soft); }
+  .repo-link{ display:inline-flex; align-items:center; gap:6px; margin-top:22px; font-family:var(--sans); font-size:14.5px; }
+
+  /* ---- skills ---- */
+  .skills-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px 40px; }
+  .skill-card{ border-top:1px solid var(--line); padding-top:18px; }
+  .skill-card h4{ font-size:16px; margin-bottom:10px; }
+  .skill-card p{ margin:0; color:var(--ink-soft); font-size:14.5px; line-height:1.6; }
+
+  /* ---- education ---- */
+  .edu-item{ display:grid; grid-template-columns:1fr auto; gap:8px 24px; border-top:1px solid var(--line); padding:22px 0; align-items:baseline; }
+  .edu-item:first-child{ border-top:none; padding-top:0; }
+  .edu-school{ font-family:var(--sans); font-weight:600; font-size:16.5px; }
+  .edu-loc{ font-size:14px; color:var(--ink-soft); }
+  .edu-dates{ font-family:var(--mono); font-size:13px; color:var(--ink-soft); }
+  .edu-tags{ grid-column:1/-1; display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+
+  /* ---- contact / footer ---- */
+  .contact-inner{ display:grid; grid-template-columns:1.2fr 1fr; gap:48px; align-items:start; }
+  .contact-links{ display:flex; flex-direction:column; gap:14px; margin-top:24px; }
+  .contact-links a{ font-family:var(--sans); font-size:16px; text-decoration:none; display:flex; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:12px; }
+  .contact-links a span.arrow{ color:var(--ink-soft); }
+  footer{ padding:28px 0; }
+  .foot-inner{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); }
+
+  @media (max-width: 860px){
+    .sheet-grid{ grid-template-columns:1fr; padding:48px 0; gap:20px; }
+    .margin-col{ border-right:none; border-bottom:1px solid var(--line); padding-right:0; padding-bottom:16px; display:flex; align-items:center; gap:14px; }
+    .sheet-meta{ display:none; }
+    .project-grid{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns:1fr; }
+    .stat-row{ grid-template-columns:repeat(2,1fr); }
+    .contact-inner{ grid-template-columns:1fr; }
+    nav.primary{ position:absolute; top:64px; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line-strong); flex-direction:column; padding:16px 32px; display:none; }
+    nav.primary.open{ display:flex; }
+    .nav-toggle{ display:block; }
+    .edu-item{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap topbar">
+    <a href="#top" class="mark" style="text-decoration:none;color:var(--ink);"><span class="box">SK</span> Sheel Kothari</a>
+    <nav class="primary" id="primaryNav">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#project">Project</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false"></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="sheet hero">
+    <div class="wrap sheet-grid">
+      <div class="margin-col">
+        <div class="sheet-no">SHEET 00 / 06</div>
+        <div class="sheet-label">Cover</div>
+        <div class="sheet-meta">
+          SEATTLE, WA<br>
+          OPEN TO RELOCATION<br>
+          REV. 2026
+        </div>
+      </div>
+      <div>
+        <span class="status"><span class="dot"></span>Open to opportunities</span>
+        <div class="kicker">Project Manager · Business Analyst</div>
+        <h1 class="name">I build the systems<br>that keep delivery moving.</h1>
+        <p class="lede">Four-plus years leading SaaS implementations and Agile/hybrid programs tied to $10M+ in contract value — cutting scope creep by 30% while keeping every engagement audit-ready across matrixed, multi-vendor environments.</p>
+        <div class="cta-row">
+          <a class="btn solid" href="mailto:kothari.she@northeastern.edu">Email me</a>
+          <a class="btn" href="https://www.linkedin.com/in/sheel-kothari/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/kotharisheel" target="_blank" rel="noopener">GitHub</a>
+        </div>
+
+        <div class="diagram-wrap">
+          <svg class="flow" viewBox="0 0 720 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Delivery process diagram: Discover, Define, Align, Deliver, Improve">
+            <path class="flow-line" d="M60,75 H660" />
+            <g>
+              <circle class="flow-node" cx="60" cy="75" r="26"/>
+              <circle class="flow-node" cx="210" cy="75" r="26"/>
+              <circle class="flow-node" cx="360" cy="75" r="26"/>
+              <circle class="flow-node" cx="510" cy="75" r="26"/>
+              <circle class="flow-node" cx="660" cy="75" r="26"/>
+            </g>
+            <text x="60" y="80" text-anchor="middle">01</text>
+            <text x="210" y="80" text-anchor="middle">02</text>
+            <text x="360" y="80" text-anchor="middle">03</text>
+            <text x="510" y="80" text-anchor="middle">04</text>
+            <text x="660" y="80" text-anchor="middle">05</text>
+            <text class="stage-label" x="60" y="122" text-anchor="middle">Discover</text>
+            <text class="stage-label" x="210" y="122" text-anchor="middle">Define</text>
+            <text class="stage-label" x="360" y="122" text-anchor="middle">Align</text>
+            <text class="stage-label" x="510" y="122" text-anchor="middle">Deliver</text>
+            <text class="stage-label" x="660" y="122" text-anchor="middle">Improve</text>
+          </svg>
+          <div class="diagram-cap">
+            <span>FIG. 1 — DELIVERY MODEL</span>
+            <span>SCALE N.T.S.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="sheet" id="about">
+    <div class="wrap sheet-grid">
+      <div class="margin-col">
+        <div class="sheet-no">SHEET 01 / 06</div>
+        <div class="sheet-label">About</div>
+        <div class="sheet-meta">MS PROJECT MGMT<br>NORTHEASTERN UNIV.</div>
+      </div>
+      <div>
+        <h2 class="title">The person behind the plan</h2>
+        <div class="about-copy">
+          <blockquote>I'm most useful on the projects where the path forward isn't obvious yet.</blockquote>
+          <p>I'm a project manager and business analyst who's spent the last four years moving between technology, government, and creative-agency environments — translating ambiguity into requirements, requirements into systems, and systems into outcomes people actually rely on.</p>
+          <p>My work has spanned SaaS delivery for a city government, Agile programs for agency clients, and a personally engineered trading platform where I acted as both PM and builder. That range taught me to read a room of stakeholders as carefully as I read a risk register, and to keep governance documentation audit-ready without slowing anyone down.</p>
+          <p>I'm currently completing my Master of Science in Project Management at Northeastern University and based in Seattle, bringing analytical rigor, structured communication, and a genuine curiosity about how systems break to every engagement.</p>
+        </div>
+        <div class="how-i-work">
+          <h4 style="font-family:var(--sans);font-size:15px;color:var(--ink-soft);">How I work</h4>
+          <ul class="how-i-work-list">
+            <li><span class="num">01</span><span>Bring structure to ambiguity before it becomes delay</span></li>
+            <li><span class="num">02</span><span>Put change control in place before scope starts creeping</span></li>
+            <li><span class="num">03</span><span>Translate between business intent and technical execution</span></li>
+            <li><span class="num">04</span><span>Keep documentation audit-ready as a habit, not a scramble</span></li>
+            <li><span class="num">05</span><span>Track the outcome — not just the ticket status</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="sheet" id="experience">
+    <div class="wrap sheet-grid">
+      <div class="margin-col">
+        <div class="sheet-no">SHEET 02 / 06</div>
+        <div class="sheet-label">Experience</div>
+        <div class="sheet-meta">2021 — PRESENT<br>3 ROLES</div>
+      </div>
+      <div>
+        <h2 class="title">Where the work happened</h2>
+
+        <div class="role">
+          <div class="role-head">
+            <div><span class="role-title">Technology Project Intern</span> · <span class="role-org">City of Cambridge</span></div>
+            <div class="role-dates">JAN 2025 – AUG 2025 · CAMBRIDGE, MA</div>
+          </div>
+          <ul>
+            <li>Supported end-to-end delivery of SaaS implementations tied to contracts generating over $10M in annual city revenue.</li>
+            <li>Partnered with internal and external engineering teams to shape product roadmaps grounded in operational data analysis.</li>
+            <li>Defined and tracked KPIs to monitor system performance across large-scale parking ecosystems.</li>
+            <li>Acted as primary point of contact for vendor partners, managing technical integrations and program risk.</li>
+            <li>Coordinated cross-functional workstreams across engineering, product, and BI teams against strict quality and timeline standards.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-head">
+            <div><span class="role-title">Project Manager</span> · <span class="role-org">Achieve Creative</span></div>
+            <div class="role-dates">JAN 2023 – DEC 2023 · MUMBAI, INDIA</div>
+          </div>
+          <ul>
+            <li>Led alignment initiatives across highly matrixed environments, presenting program updates and quarterly reviews to senior leadership.</li>
+            <li>Facilitated 20+ requirements workshops, translating business needs into technical specifications under a formal change control process.</li>
+            <li>Reduced scope creep by 30% across all client accounts through consistent, documented change governance.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-head">
+            <div><span class="role-title">Project Manager</span> · <span class="role-org">Gemius Creative Studio</span></div>
+            <div class="role-dates">JUN 2021 – DEC 2022 · MUMBAI, INDIA</div>
+          </div>
+          <ul>
+            <li>Ran sprint planning, daily standups, and retrospectives across 4 concurrent Agile projects, maintaining trackers and risk logs.</li>
+            <li>Established project governance standards across all engagements — charters, stakeholder plans, risk registers, and CR logs.</li>
+            <li>Maintained 100% documentation compliance and audit-ready project records throughout every engagement.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT -->
+  <section class="sheet" id="project">
+    <div class="wrap sheet-grid">
+      <div class="margin-col">
+        <div class="sheet-no">SHEET 03 / 06</div>
+        <div class="sheet-label">Featured project</div>
+        <div class="sheet-meta">FINTECH ENGINEERING<br>PERSONAL PROGRAM</div>
+      </div>
+      <div>
+        <div class="project-tag">PERSONAL PROJECT · AI-ASSISTED ENGINEERING PROGRAM</div>
+        <h3 class="project-title">AI Algorithmic Trading Automation</h3>
+        <p style="max-width:64ch;color:var(--ink-soft);margin-bottom:0;">An 18-module Python trading platform — order execution, P&amp;L reporting, backtesting, and intraday auto square-off — run as a governed engineering program rather than a weekend script.</p>
+
+        <div class="project-grid" style="margin-top:26px;">
+          <div>
+            <h4>What I ran it like a program</h4>
+            <ul>
+              <li>Authored CLAUDE.md as a governing agent specification — safety invariants, PR-only branch policy, mandatory reviewer step.</li>
+              <li>Drove 53 reviewed pull requests and 49 tracked issues through a structured, agent-assisted delivery workflow.</li>
+              <li>Packaged four reusable Claude skills, including a DST-safe pre-open IPO digest auto-posted to Slack.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>What I built</h4>
+            <ul>
+              <li>Layered risk guardrails across order sizing, exposure limits, and automatic square-off logic.</li>
+              <li>Backed the whole system with 262 mocked-API tests — no live credentials or orders in the test path.</li>
+              <li>Delivered as an AI-assisted engineering program, using Claude Code as the build partner throughout.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat"><div class="n">18</div><div class="l">PYTHON MODULES</div></div>
+          <div class="stat"><div class="n">262</div><div class="l">MOCKED-API TESTS</div></div>
+          <div class="stat"><div class="n">53</div><div class="l">REVIEWED PULL REQUESTS</div></div>
+          <div class="stat"><div class="n">49</div><div class="l">TRACKED ISSUES</div></div>
+        </div>
+
+        <div class="code-block"><span class="muted"># CLAUDE.md — governing agent spec (excerpt)</span><br>policy: pr_only_branch<br>reviewer: required<br>credentials: never_live<br>test_path: mocked_broker_client</div>
+
+        <div class="tag-row">
+          <span class="tag">Python 3.9+</span>
+          <span class="tag">Kite Connect API</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">WebSockets</span>
+          <span class="tag">pytest</span>
+          <span class="tag">Claude Code</span>
+        </div>
+
+        <a class="repo-link" href="https://github.com/kotharisheel/zerodha_trading_automation" target="_blank" rel="noopener">View public repository ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="sheet" id="skills">
+    <div class="wrap sheet-grid">
+      <div class="margin-col">
+        <div class="sheet-no">SHEET 04 / 06</div>
+        <div class="sheet-label">Skills</div>
+        <div class="sheet-meta">5 DISCIPLINES</div>
+      </div>
+      <div>
+        <h2 class="title">The toolkit behind the delivery</h2>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h4>Project management &amp; governance</h4>
+            <p>Integrated delivery planning, RAID, change &amp; scope control, stakeholder engagement, RACI, executive reporting, BRD authoring, process mapping, audit-ready controls documentation, SLA management.</p>
+          </div>
+          <div class="skill-card">
+            <h4>Methodology</h4>
+            <p>Agile Scrum, Waterfall/hybrid delivery, sprint planning, backlog grooming, UAT coordination, SDLC, budgeting.</p>
+          </div>
+          <div class="skill-card">
+            <h4>PM tools</h4>
+            <p>MS Project, Jira, Confluence, Smartsheet, Monday.com.</p>
+          </div>
+          <div class="skill-card">
+            <h4>Data &amp; analytics</h4>
+            <p>Python (Pandas, Scikit-Learn, Statsmodels), PySpark, R, SQL, A/B &amp; multivariate testing, hypothesis testing, power analysis, cohort/funnel/retention analysis, user segmentation, risk modeling.</p>
+          </div>
+          <div class="skill-card">
+            <h4>Cloud, data engineering &amp; BI</h4>
+            <p>AWS, Azure, Databricks, dbt, Snowflake, Power BI, Tableau, Looker.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="sheet" id="education">
+    <div class="wrap sheet-grid">
+      <div class="margin-col">
+        <div class="sheet-no">SHEET 05 / 06</div>
+        <div class="sheet-label">Education</div>
+        <div class="sheet-meta">2 DEGREES</div>
+      </div>
+      <div>
+        <h2 class="title">Where the thinking was trained</h2>
+
+        <div class="edu-item">
+          <div>
+            <div class="edu-school">Northeastern University</div>
+            <div class="edu-loc">Master of Science in Project Management · GPA 3.9</div>
+          </div>
+          <div class="edu-dates">JAN 2024 – JUL 2026 · BOSTON, MA</div>
+          <div class="edu-tags">
+            <span class="tag">Agile Project Management</span>
+            <span class="tag">Project Analytics</span>
+            <span class="tag">Risk &amp; Planning</span>
+            <span class="tag">Stakeholder Management</span>
+          </div>
+        </div>
+
+        <div class="edu-item">
+          <div>
+            <div class="edu-school">Veer Narmad South Gujarat University</div>
+            <div class="edu-loc">Bachelor of Business Administration, Analytics · GPA 3.8</div>
+          </div>
+          <div class="edu-dates">MAR 2018 – MAY 2021 · SURAT, INDIA</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sheet" id="contact">
+    <div class="wrap sheet-grid">
+      <div class="margin-col">
+        <div class="sheet-no">SHEET 06 / 06</div>
+        <div class="sheet-label">Contact</div>
+        <div class="sheet-meta">SEATTLE, WA</div>
+      </div>
+      <div class="contact-inner">
+        <div>
+          <h2 class="title">Have a program that needs a clear path forward?</h2>
+          <p style="max-width:52ch;color:var(--ink-soft);">Open to project management, program coordination, business analysis, and technology operations roles where I can help teams move from idea to execution.</p>
+        </div>
+        <div>
+          <div class="contact-links">
+            <a href="mailto:kothari.she@northeastern.edu">kothari.she@northeastern.edu <span class="arrow">↗</span></a>
+            <a href="tel:+16176524992">+1 (617) 652-4992 <span class="arrow">↗</span></a>
+            <a href="https://www.linkedin.com/in/sheel-kothari/" target="_blank" rel="noopener">LinkedIn <span class="arrow">↗</span></a>
+            <a href="https://github.com/kotharisheel" target="_blank" rel="noopener">GitHub <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>SHEEL KOTHARI — PROJECT MANAGER &amp; BUSINESS ANALYST</span>
+    <span>SEATTLE, WA · REV. 2026</span>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('primaryNav');
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded', false);
+  }));
+</script>
+
+</body>
+</html>
